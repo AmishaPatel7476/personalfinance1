@@ -1,0 +1,113 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Finance API - Expenses & Saving Goals",
+  "dateExported": "2025-08-15",
+  "requests": [
+    {
+      "name": "Get All Expenses",
+      "method": "GET",
+      "url": "http://localhost:5000/api/expenses",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ]
+    },
+    {
+      "name": "Add Expense",
+      "method": "POST",
+      "url": "http://localhost:5000/api/expenses",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": {
+          "title": "Grocery Shopping",
+          "amount": 150,
+          "category": "Food"
+        }
+      }
+    },
+    {
+      "name": "Update Expense",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/expenses/{{expenseId}}",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": {
+          "title": "Supermarket Shopping",
+          "amount": 200,
+          "category": "Food"
+        }
+      }
+    },
+    {
+      "name": "Delete Expense",
+      "method": "DELETE",
+      "url": "http://localhost:5000/api/expenses/{{expenseId}}",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ]
+    },
+    {
+      "name": "Get All Saving Goals",
+      "method": "GET",
+      "url": "http://localhost:5000/api/savinggoals",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ]
+    },
+    {
+      "name": "Add Saving Goal",
+      "method": "POST",
+      "url": "http://localhost:5000/api/savinggoals",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": {
+          "title": "Buy a Laptop",
+          "targetAmount": 1200,
+          "deadline": "2025-12-31"
+        }
+      }
+    },
+    {
+      "name": "Update Saving Goal",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/savinggoals/{{goalId}}",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": {
+          "currentAmount": 600,
+          "achieved": false
+        }
+      }
+    },
+    {
+      "name": "Delete Saving Goal",
+      "method": "DELETE",
+      "url": "http://localhost:5000/api/savinggoals/{{goalId}}",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ]
+    }
+  ],
+  "variables": [
+    { "name": "token", "value": "PASTE_JWT_TOKEN_HERE" },
+    { "name": "expenseId", "value": "" },
+    { "name": "goalId", "value": "" }
+  ]
+}
