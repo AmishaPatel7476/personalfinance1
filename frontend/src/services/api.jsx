@@ -1,20 +1,42 @@
-// src/services/api.js
-
 import axios from 'axios';
 
-// API base URL ko .env file se le rahe hain
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5001',
 });
 
-// Yahan hum JWT token ko request headers mein add kar sakte hain
-// Ek example ke liye, hum hardcoded token use kar rahe hain
 API.interceptors.request.use((config) => {
-  const token = 'your_jwt_token_here'; // Isse dynamically fetch karna hoga
+  // Get token from localStorage
+  const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
+  
+  // If we have a token, add it to the headers
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
+  } else if (user) {
+    // If we have user data but no token, try to get token from user data
+    const userData = JSON.parse(user);
+    if (userData.token) {
+      localStorage.setItem('token', userData.token);
+      config.headers.Authorization = `Bearer ${userData.token}`;
+    }
   }
+  
   return config;
+}, (error) => {
+  return Promise.reject(error);
 });
+
+// Add response interceptor for handling 401 errors
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Clear local storage and redirect to login
+      localStorage.clear();
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default API;

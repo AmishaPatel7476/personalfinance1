@@ -12,10 +12,15 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axiosInstance.post('/api/auth/login', formData);
-      login(response.data);
-      navigate('/tasks');
+      const { token, ...userData } = response.data;
+      // Store both token and user data
+      login({ ...userData, token });
+      // Update axiosInstance authorization header
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      navigate('/dashboard');
     } catch (error) {
-      alert('Login failed. Please try again.');
+      console.error('Login error:', error);
+      alert('Login failed. Please check your credentials and try again.');
     }
   };
 
