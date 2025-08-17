@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/expenses', expenseRoutes);
-app.use('/api/savinggoals', savingGoalRoutes);
+app.use('/api/saving-goals', savingGoalRoutes);
 
 
 app.use('/api/auth', require('./routes/authRoutes'));
