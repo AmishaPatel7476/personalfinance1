@@ -31,3 +31,7 @@ npm run dev
 Open a new terminal:
 npm install
 npm start
+
+Login 
+Email: Amisha@gmail.com
+Password:123456
