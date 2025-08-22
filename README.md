@@ -29,9 +29,11 @@ Run backend server:
 npm run dev
 
 Open a new terminal:
-npm install
+npm run install-all
+npm run dev
+or
 npm start
 
 Login 
-Email: Amisha@gmail.com
+Email: amisha@gmail.com
 Password:123456
